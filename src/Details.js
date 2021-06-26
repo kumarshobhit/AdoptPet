@@ -36,35 +36,47 @@ class Details extends Component {
     } = this.state;
 
     return (
-      <div className="details">
-        <Carousel images={images} />
-        <div>
-          <h1>{name}</h1>
-          <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
-          <ThemeContext.Consumer>
-            {(themeHook) => (
+      <ThemeContext.Consumer>
+        {(themeHook) => (
+          <div className="details">
+            <Carousel images={images} />
+            <div>
+              <h1>{name}</h1>
+              <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
+
               <button
                 onClick={this.toggleModal}
                 style={{ backgroundColor: themeHook[0] }}
               >
                 Adopt {name}
               </button>
-            )}
-          </ThemeContext.Consumer>
-          <p>{description}</p>
-          {showModal ? (
-            <Modal>
-              <div>
-                <h1>Would you like to Adopt {name}?</h1>
-                <div className="buttons">
-                  <button onClick={this.adopt}>Yes</button>
-                  <button onClick={this.adopt}>No</button>
-                </div>
-              </div>
-            </Modal>
-          ) : null}
-        </div>
-      </div>
+
+              <p>{description}</p>
+              {showModal ? (
+                <Modal>
+                  <div>
+                    <h1>Would you like to Adopt {name}?</h1>
+                    <div className="buttons">
+                      <button
+                        onClick={this.adopt}
+                        style={{ backgroundColor: themeHook[0] }}
+                      >
+                        Yes
+                      </button>
+                      <button
+                        onClick={this.toggleModal}
+                        style={{ backgroundColor: themeHook[0] }}
+                      >
+                        No
+                      </button>
+                    </div>
+                  </div>
+                </Modal>
+              ) : null}
+            </div>
+          </div>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }
