@@ -31,16 +31,18 @@ const Search = () => {
   //   const location = locationTuple[0];
   //   const setLocation = locationTuple[1];
   return (
-    <div className="search-params">
+    <div className="my-0 mx-auto w-11/12 ">
       <form
+        className="p-10 mb-10 bg-gray-200 shadow-lg flex flex-col justify-center items-center divide-y divide-gray-900 "
         onSubmit={(e) => {
           e.preventDefault();
           requestPets();
         }}
       >
-        <label htmlFor="location">
+        <label htmlFor="location" className="search-label">
           Location
           <input
+            className="search-control"
             type="text"
             id="location"
             value={location.toUpperCase()}
@@ -48,15 +50,16 @@ const Search = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
         </label>
-        <label htmlFor="animal">
+        <label htmlFor="animal" className="search-label">
           Animal
           <select
+            className="search-control"
             value={animal}
             id="animal"
             onChange={(e) => setAnimal(e.target.value)}
             onBlur={(e) => setAnimal(e.target.value)}
           >
-            <option />f
+            <option />
             {animals.map((animal) => (
               <option value={animal} key={animal}>
                 {animal}
@@ -64,9 +67,10 @@ const Search = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="breed">
+        <label htmlFor="breed" className="search-label">
           Breed
           <select
+            className="search-control disabled:opacity-50"
             value={breed}
             id="breed"
             onChange={(e) => setBreed(e.target.value)}
@@ -80,8 +84,10 @@ const Search = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="theme">
+        <label htmlFor="theme" className="search-label">
+          Theme
           <select
+            className="search-control"
             name=""
             value={theme}
             onChange={(e) => setTheme(e.target.value)}
@@ -94,7 +100,12 @@ const Search = () => {
             <option value="mediumorchid">Medium Orchid</option>
           </select>
         </label>
-        <button style={{ backgroundColor: theme }}>Submit</button>
+        <button
+          className="rounded px-6 py-2 mt-2 text-white hover:opacity-50 border-none"
+          style={{ backgroundColor: theme }}
+        >
+          Submit
+        </button>
       </form>
       <Result pets={pets} />
     </div>
